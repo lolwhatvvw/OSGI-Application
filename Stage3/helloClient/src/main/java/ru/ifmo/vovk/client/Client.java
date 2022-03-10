@@ -9,15 +9,13 @@ import ru.ifmo.vovk.service.GreetingService;
 public class Client{
     private GreetingService greetingService;
 
-    @Reference(service = GreetingService.class)
-    protected  void setGreetingService(GreetingService greetingService){
+    @Activate
+    public Client(@Reference GreetingService greetingService){
         this.greetingService = greetingService;
+        onActivate();
     }
 
-    @Activate
-    protected void onActivate(){
+    public void onActivate(){
         greetingService.sayHello();
     }
-
-
 }
