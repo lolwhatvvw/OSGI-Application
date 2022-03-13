@@ -9,13 +9,9 @@
     <artifactId>ru.ifmo.vovk.command</artifactId>
     <version>1.0.0</version>
     <packaging>bundle</packaging>
+
     <dependencies>
 
-        <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.gogo.runtime</artifactId>
-            <version>1.1.4</version>
-        </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
