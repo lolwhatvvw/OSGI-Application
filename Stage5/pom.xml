@@ -13,6 +13,8 @@
         <module>service</module>
         <module>command</module>
         <module>lenta</module>
+        <module>aif</module>
+        <module>meduza</module>
     </modules>
 
     <dependencies>

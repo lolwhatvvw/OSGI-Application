@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 public interface NewsService {
 
     String getNewsName();
-
     String getNewsUrl();
 
     default  List<String> getAllWords(){
@@ -29,22 +28,17 @@ public interface NewsService {
             SyndFeed feed = input.build(new XmlReader(createURLForService()));
             List<SyndEntry> entries = feed.getEntries();
             for (SyndEntry entry : entries) {
-                res.addAll(List.of(entry.getTitle().toLowerCase().split(" ")));
+                res.addAll(List.of(entry.getTitle()
+                        .replaceAll("\\p{Z}", "\s")
+                        .replaceAll("[^\\s-\\wА-Яа-я%]", "").toLowerCase().trim()
+                        .split("\s")
+                ));
             }
         } catch (IOException | FeedException e) {
             e.printStackTrace(); //todo
         }
         return res;
     }
-
-    private URL createURLForService(){
-        try {
-            return new URL(getNewsUrl());
-        } catch (MalformedURLException e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
   default  List<String> getTopWords(){
         Map<String, Integer> map = getFrequencies();
 
@@ -55,6 +49,13 @@ public interface NewsService {
               .collect(Collectors.toList());
     }
 
+    private URL createURLForService(){
+        try {
+            return new URL(getNewsUrl());
+        } catch (MalformedURLException e) {
+            throw new IllegalStateException(e);
+        }
+    }
     private Map<String, Integer> getFrequencies(){
         return getAllWords().stream()
                 .collect( Collectors.groupingBy( Function.identity(), Collectors.summingInt(e -> 1) ));

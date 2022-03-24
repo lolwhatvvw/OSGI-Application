@@ -34,7 +34,7 @@ public class NewsCommand {
             for (NewsService s : newsList) {
                 str.append(s.getNewsName());
             }
-            return str.toString();
+            return String.join(", ", str.toString());
         } else
             return "No services registered!";
     }
@@ -47,7 +47,7 @@ public class NewsCommand {
                     .orElse(null);
 
             if(newsService!= null) return String.join(", ", newsService.getTopWords());
-             else return "No such service registered";
+             else return "Service " + name + " is not registered";
 
         } else return "There are no services registered!";
     }
