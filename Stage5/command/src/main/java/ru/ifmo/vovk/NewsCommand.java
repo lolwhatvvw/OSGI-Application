@@ -22,32 +22,39 @@ public class NewsCommand {
     )
     public void bindService(NewsService newsService) {
         newsList.add(newsService);
+        System.out.println(newsService.getNewsName() + " is registered");
     }
 
     public void unbindService(NewsService newsService) {
         newsList.remove(newsService);
+        System.out.println( "Unbound: " + newsService.getNewsName() );
     }
 
     public String stats() {
         if (!newsList.isEmpty()) {
             StringBuilder str = new StringBuilder();
             for (NewsService s : newsList) {
-                str.append(s.getNewsName());
+                str.append(s.getNewsName()).append(" ");
             }
-            return String.join(", ", str.toString());
+            return "Available news sources: " + System.lineSeparator()
+                    + String.join(", ", str.toString()) + System.lineSeparator()
+                    + "usage: news:stats {news_provider_name}";
         } else
             return "No services registered!";
     }
 
-    public String stats(String name) { //todo: two args, check length, use second for limit words parameter
+    public String stats(String[] name) {
+        if (name.length > 1){
+            return "usage: news:stats {news_provider_name}";
+        }
         if (!newsList.isEmpty()) {
             NewsService newsService = newsList.stream()
-                    .filter(customer -> name.equals(customer.getNewsName()))
+                    .filter(customer -> name[0].equals(customer.getNewsName()))
                     .findAny()
                     .orElse(null);
 
             if(newsService!= null) return String.join(", ", newsService.getTopWords());
-             else return "Service " + name + " is not registered";
+             else return "Service " + name[0] + " is not registered";
 
         } else return "There are no services registered!";
     }

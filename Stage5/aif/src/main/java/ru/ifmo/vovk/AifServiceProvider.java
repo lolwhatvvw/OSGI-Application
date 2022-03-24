@@ -1,17 +1,11 @@
 package ru.ifmo.vovk;
 
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import ru.ifmo.vovk.service.AbstractNewsService;
 import ru.ifmo.vovk.service.NewsService;
 
 @Component(service = NewsService.class, immediate = true)
-public class AifServiceProvider implements NewsService {
-
-    @Activate
-    public AifServiceProvider(){
-        System.out.println("Aif is registered"); //temporary
-    }
-
+public class AifServiceProvider extends AbstractNewsService implements NewsService {
     @Override
     public String getNewsName(){
         return "Aif";

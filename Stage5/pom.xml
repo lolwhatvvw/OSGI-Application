@@ -15,6 +15,7 @@
         <module>lenta</module>
         <module>aif</module>
         <module>meduza</module>
+        <module>cnn</module>
     </modules>
 
     <dependencies>

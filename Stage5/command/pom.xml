@@ -42,7 +42,6 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <_dsannotations-options>inherit</_dsannotations-options>
                         <Bundle-SymbolicName>
                             ${project.artifactId}
                         </Bundle-SymbolicName>
