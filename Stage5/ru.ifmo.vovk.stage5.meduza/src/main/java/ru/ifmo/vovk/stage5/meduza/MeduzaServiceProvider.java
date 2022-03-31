@@ -56,6 +56,7 @@ public class MeduzaServiceProvider extends AbstractNewsService implements NewsSe
         newsUrl = newsConfig.newsUrl();
         limit = newsConfig.limit();
     }
+
 }
 
 
