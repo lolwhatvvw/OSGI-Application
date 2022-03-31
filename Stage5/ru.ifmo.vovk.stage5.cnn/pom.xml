@@ -4,22 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>ru.ifmo</groupId>
-        <artifactId>Stage5</artifactId>
+        <groupId>ru.ifmo.vovk.stage5</groupId>
+        <artifactId>stage5</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>ru.ifmo.vovk</groupId>
-    <artifactId>ru.ifmo.vovk.aif</artifactId>
+    <artifactId>cnn</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
-    <name>Aif news provider</name>
+    <name>CNN news provider</name>
 
     <dependencies>
         <dependency>
-            <groupId>ru.ifmo.vovk</groupId>
-            <artifactId>ru.ifmo.vovk.service</artifactId>
+            <groupId>ru.ifmo.vovk.stage5</groupId>
+            <artifactId>service</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
@@ -40,7 +39,7 @@
                         <Bundle-Name>${project.name}</Bundle-Name>
                         <Bundle-Version>${project.version}</Bundle-Version>
                         <Import-Package>!com.sun.syndication.feed.synd,
-                            ru.ifmo.vovk.service, *</Import-Package>
+                            ru.ifmo.vovk.stage5.service, *</Import-Package>
                         <Export-Package>${project.artifactId}</Export-Package>
                     </instructions>
                 </configuration>
