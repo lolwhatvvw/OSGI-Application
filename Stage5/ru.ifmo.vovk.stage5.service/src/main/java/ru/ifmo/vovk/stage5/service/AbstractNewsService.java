@@ -13,15 +13,15 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 abstract public class AbstractNewsService implements NewsService{
-    protected int limit;
+    public int limit;
 
-    protected Set<String> forbiddenWords = new HashSet<>(){{
+    public Set<String> forbiddenWords = new HashSet<>(){{
         {
-            addAll(List.of("и", "у", "в", "не", "на", "я", "вот", "быть", "с", "что", "а", "по", "о", "за", "для",
-                    "из-за", "из", "об", "от", "к", "-", "это", "его", "они", "мы", "там", "как",
+            addAll(List.of("и", "у", "в", "не", "на", "я", "вот", "быть", "с", "что", "а", "по", "о", "за", "для", "при", "после",
+                    "из-за", "из", "об", "от", "к", "-", "это", "его", "они", "мы", "там", "как", "чтобы", "уже", "ее",
 
-                    "at", "after", "a", "on", "the", "be", "of", "and", "in", "into", "to", "have", "", "it", "for",
-                    "you", "as", "do", "this", "are", "is", "us", "its", "new", "more", "an", "by", "says", "—"));
+                    "at", "we", "after", "a", "on", "the", "be", "of", "and", "in", "into", "to", "have", "", "it", "for",
+                    "you", "as", "do", "this", "are", "is", "us", "its", "new", "more", "an", "by", "says", "—", "how"));
         }
     }};
 
@@ -51,12 +51,13 @@ abstract public class AbstractNewsService implements NewsService{
         } catch (IOException | FeedException e) {
             System.err.println("failed to read rss feed [" + rss + "]");
         }
+
         return res;
     }
 
     protected   Map<String, Integer> getFrequencies(){
         return getAllWords().stream()
-                .collect(Collectors.groupingBy( Function.identity(), Collectors.summingInt(e -> 1) ));
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.summingInt(e -> 1) ));
     }
 
     protected  Set<String> getSetOfRemovableWords(){
